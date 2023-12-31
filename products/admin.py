@@ -1,30 +1,36 @@
 from django.contrib import admin
+from parler.admin import TranslatableAdmin
 
-from products.models import Country, Brand, Product, Category, SubCategory, Review
+from products.models import Country, Brand, Product, Category, SubCategory, Review, ProductImage
 
 
 @admin.register(Country)
-class CountryAdmin(admin.ModelAdmin):
+class CountryAdmin(TranslatableAdmin):
     pass
 
 
 @admin.register(Brand)
-class BrandAdmin(admin.ModelAdmin):
+class BrandAdmin(TranslatableAdmin):
     pass
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(TranslatableAdmin):
     pass
 
 
 @admin.register(SubCategory)
-class SubCategoryAdmin(admin.ModelAdmin):
+class SubCategoryAdmin(TranslatableAdmin):
     pass
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(TranslatableAdmin):
+    pass
+
+
+@admin.register(ProductImage)
+class ProductImageAdmin(admin.ModelAdmin):
     pass
 
 

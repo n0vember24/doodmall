@@ -19,7 +19,7 @@ class Country(TranslatableModel):
         verbose_name_plural = _('Countries')
 
     def __str__(self):
-        return self.translations.name
+        return self.name
 
 
 class Brand(TranslatableModel):
@@ -47,7 +47,7 @@ class Brand(TranslatableModel):
     found_year = DateField(_('Year of brand foundation'), null=True, blank=True)
 
     def __str__(self):
-        return self.translations.name
+        return self.title
 
 
 class Category(TranslatableModel):
@@ -70,7 +70,7 @@ class Category(TranslatableModel):
         verbose_name_plural = _('Categories')
 
     def __str__(self):
-        return self.translations.name
+        return self.title
 
 
 class SubCategory(TranslatableModel):
@@ -89,7 +89,7 @@ class SubCategory(TranslatableModel):
         verbose_name_plural = _('Sub Categories')
 
     def __str__(self):
-        return self.translations.name
+        return self.title
 
 
 class Product(TranslatableModel):
@@ -124,15 +124,12 @@ class Product(TranslatableModel):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.translations.name
+        return self.title
 
 
 class ProductImage(Model):
     product = ForeignKey('products.Product', SET_NULL, null=True)
     image = ImageField(upload_to='products/images/')
-
-    def __str__(self):
-        return self.product.translations.name
 
 
 class Review(Model):
@@ -143,6 +140,3 @@ class Review(Model):
 
     class Meta:
         unique_together = ('user', 'product')
-
-    def __str__(self):
-        return self.product.translations.name

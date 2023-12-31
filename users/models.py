@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.core.validators import MinLengthValidator
 from django.db.models import Model, CharField, ForeignKey, ManyToManyField, DateTimeField, OneToOneField, \
     CASCADE, BooleanField, TextField, SET_NULL
