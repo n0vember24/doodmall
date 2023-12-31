@@ -3,6 +3,7 @@ from django.core.validators import MinLengthValidator
 from django.db.models import Model, CharField, ForeignKey, ManyToManyField, DateTimeField, OneToOneField, \
     CASCADE, BooleanField, TextField, SET_NULL
 from django.utils.translation import gettext_lazy as _
+from parler.models import TranslatableModel, TranslatedFields
 
 from users.validators import PhoneNumberValidator
 
@@ -33,28 +34,39 @@ class Order(Model):
         auto_now_add=True
     )
 
+    def __str__(self):
+        return '%s: %s' % (self.id, self.user.first_name)
+
 
 class Cart(Model):
-    user = OneToOneField('users.User', CASCADE, primary_key=True)
+    user = OneToOneField('users.User', CASCADE, primary_key=True, unique=True)
     products = ManyToManyField('products.Product')
 
+    def __str__(self):
+        return self.user.first_name
 
-class Notification(Model):
+
+class Notification(TranslatableModel):
+    translations = TranslatedFields(
+        title=CharField(
+            _('Title'),
+            max_length=70,
+            help_text=_('Required. The title must consist minimum 2 characters and maximum 70.'),
+            validators=(MinLengthValidator(2),)
+        ),
+        message=TextField(
+            _('Message of notification'),
+            max_length=500,
+            help_text=_('Required. The text must consist minimum 20 characters and maximum 500'),
+            validators=(MinLengthValidator(20),)
+        )
+    )
     user = ForeignKey('users.User', CASCADE)
-    title = CharField(
-        _('Title'),
-        max_length=70,
-        help_text=_('Required. The title must consist minimum 2 characters and maximum 70.'),
-        validators=(MinLengthValidator(2),)
-    )
-    message = TextField(
-        _('Message of notification'),
-        max_length=500,
-        help_text=_('Required. The text must consist minimum 20 characters and maximum 500'),
-        validators=(MinLengthValidator(20),)
-    )
     is_read = BooleanField(_('Is read'), default=False)
     time = DateTimeField(
         _("Received date and time"),
         auto_now_add=True
     )
+
+    def __str__(self):
+        return self.translations.title

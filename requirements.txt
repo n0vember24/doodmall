@@ -3,3 +3,9 @@ psycopg2
 django-jazzmin
 pillow
 python-dotenv
+drf-yasg
+djangorestframework
+django-debug-toolbar
+djangorestframework-simplejwt
+django-filter
+django-parler

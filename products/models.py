@@ -1,31 +1,42 @@
 from django.core.validators import MinLengthValidator, FileExtensionValidator, MinValueValidator, MaxValueValidator
 from django.db.models import Model, CharField, TextField, ImageField, SlugField, ForeignKey, SET_NULL, DateField, \
-    CASCADE, BooleanField, DateTimeField, PositiveSmallIntegerField
+    CASCADE, BooleanField, DateTimeField, PositiveSmallIntegerField, JSONField
 from django.utils.translation import gettext_lazy as _
+from parler.models import TranslatableModel, TranslatedFields
 
 
-class Country(Model):
-    name = CharField(
-        _('Name of Country'),
-        max_length=30,
-        validators=(MinLengthValidator(3),)
+class Country(TranslatableModel):
+    translations = TranslatedFields(
+        name=CharField(
+            _('Name of Country'),
+            max_length=30,
+            validators=(MinLengthValidator(3),)
+        )
     )
     slug = SlugField(max_length=40, unique=True)
 
+    class Meta:
+        verbose_name_plural = _('Countries')
 
-class Brand(Model):
-    title = CharField(
-        _('Title of brand'),
-        max_length=30,
-        help_text=_("Required. The title must consist minimum 2 and maximum 30 characters."),
-        validators=[MinLengthValidator(2)]
-    )
-    about = TextField(
-        _('Description of the brand'),
-        max_length=500,
-        null=True,
-        blank=True,
-        help_text=_('Not required. The description must consist minimum 50 and maximum 500 characters.'),
+    def __str__(self):
+        return self.translations.name
+
+
+class Brand(TranslatableModel):
+    translations = TranslatedFields(
+        title=CharField(
+            _('Title of brand'),
+            max_length=30,
+            help_text=_("Required. The title must consist minimum 2 and maximum 30 characters."),
+            validators=[MinLengthValidator(2)]
+        ),
+        about=TextField(
+            _('Description of the brand'),
+            max_length=500,
+            null=True,
+            blank=True,
+            help_text=_('Not required. The description must consist minimum 50 and maximum 500 characters.'),
+        )
     )
     logo = ImageField(
         _('Logo of the brand'),
@@ -35,39 +46,69 @@ class Brand(Model):
     country = ForeignKey('products.Country', SET_NULL, null=True)
     found_year = DateField(_('Year of brand foundation'), null=True, blank=True)
 
+    def __str__(self):
+        return self.translations.name
 
-class Category(Model):
-    title = CharField(
-        _('Title of Category'),
-        max_length=50,
-        validators=(MinLengthValidator(2),)
-    )
-    about = TextField(
-        max_length=250,
-        null=True,
-        blank=True,
-        help_text=_('Not required. The description must consist minimum 25 and maximum 250 characters.'),
+
+class Category(TranslatableModel):
+    translations = TranslatedFields(
+        title=CharField(
+            _('Title of Category'),
+            max_length=50,
+            validators=(MinLengthValidator(2),)
+        ),
+        about=TextField(
+            max_length=250,
+            null=True,
+            blank=True,
+            help_text=_('Not required. The description must consist minimum 25 and maximum 250 characters.'),
+        )
     )
     slug = SlugField(max_length=60, unique=True)
 
+    class Meta:
+        verbose_name_plural = _('Categories')
 
-class SubCategory(Model):
+    def __str__(self):
+        return self.translations.name
+
+
+class SubCategory(TranslatableModel):
     parent = ForeignKey('products.Category', SET_NULL, null=True)
-    title = CharField(
-        _('Title of Subcategory'),
-        max_length=50,
-        validators=(MinLengthValidator(2),)
+    translations = TranslatedFields(
+        title=CharField(
+            _('Title of Subcategory'),
+            max_length=50,
+            validators=(MinLengthValidator(2),)
+        )
     )
     slug = SlugField(max_length=60, unique=True)
 
+    class Meta:
+        verbose_name = _('Sub Category')
+        verbose_name_plural = _('Sub Categories')
 
-class Product(Model):
-    title = CharField(
-        _('Title of Product'),
-        max_length=200,
-        validators=(MinLengthValidator(5),)
+    def __str__(self):
+        return self.translations.name
+
+
+class Product(TranslatableModel):
+    translations = TranslatedFields(
+        title=CharField(
+            _('Title of Product'),
+            max_length=200,
+            validators=(MinLengthValidator(5),)
+        ),
+        description=CharField(
+            _('Description of product'),
+            max_length=255,
+            null=True,
+            blank=True
+        )
     )
+
     slug = SlugField(max_length=200, validators=(MinLengthValidator(5),))
+    attrs = JSONField(default=dict)
     category = ForeignKey('products.SubCategory', SET_NULL, null=True)
     is_exists = BooleanField(default=True)
     created_at = DateTimeField(auto_now_add=True)
@@ -82,6 +123,17 @@ class Product(Model):
             self.is_exists = False
         return super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.translations.name
+
+
+class ProductImage(Model):
+    product = ForeignKey('products.Product', SET_NULL, null=True)
+    image = ImageField(upload_to='products/images/')
+
+    def __str__(self):
+        return self.product.translations.name
+
 
 class Review(Model):
     user = ForeignKey('users.User', SET_NULL, null=True)
@@ -91,3 +143,6 @@ class Review(Model):
 
     class Meta:
         unique_together = ('user', 'product')
+
+    def __str__(self):
+        return self.product.translations.name
