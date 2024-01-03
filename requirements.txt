@@ -9,3 +9,5 @@ django-debug-toolbar
 djangorestframework-simplejwt
 django-filter
 django-parler
+django-jsoneditor
+django-rosetta

@@ -5,8 +5,9 @@ from users.models import User, Order, Cart, Notification
 
 class UserSerializer(ModelSerializer):
     class Meta:
-        fields = '__all__'
+        exclude = ('id', 'password', 'is_staff', 'is_superuser')
         model = User
+
 
 
 class OrderSerializer(ModelSerializer):

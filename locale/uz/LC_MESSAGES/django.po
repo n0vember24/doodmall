@@ -1,0 +1,259 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-02 17:04+0500\n"
+"PO-Revision-Date: 2024-01-02 17:09+0500\n"
+"Last-Translator: Habibulloh  <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: config/settings.py:94
+msgid "English"
+msgstr ""
+
+#: config/settings.py:95
+msgid "Uzbek"
+msgstr ""
+
+#: config/settings.py:96
+msgid "Russian"
+msgstr ""
+
+#: config/urls.py:12
+msgid "OOO DoodMall"
+msgstr ""
+
+#: config/urls.py:13
+msgid "DoodMall Administration"
+msgstr "DoodMall Admin Paneli"
+
+#: config/urls.py:14
+msgid "Admin Panel"
+msgstr "Admin Paneli"
+
+#: config/urls.py:20
+msgid "API for DoodMall"
+msgstr "DoodMall API si"
+
+#: products/models.py:14
+msgid "Name of Country"
+msgstr "Davlat nomi"
+
+#: products/models.py:22
+msgid "Countries"
+msgstr "Davlatlar"
+
+#: products/models.py:31
+msgid "Title of brand"
+msgstr "Brend nomi"
+
+#: products/models.py:33
+msgid "Required. The title must consist minimum 2 and maximum 30 characters."
+msgstr ""
+"Majburiy. Sarlavhada minimum 2 va maksimum 30ta simbol bo'lishi kerak."
+
+#: products/models.py:37
+msgid "Description of the brand"
+msgstr "Brendning tavsifi"
+
+#: products/models.py:41
+msgid ""
+"Not required. The description must consist minimum 50 and maximum 500 "
+"characters."
+msgstr ""
+"Majburiy emas. Tavsifda minimum 50 va maksimum 500ta simbol bo'lishi kerak"
+
+#: products/models.py:45
+msgid "Logo of the brand"
+msgstr "Brendning logotipi"
+
+#: products/models.py:50
+msgid "Year of brand foundation"
+msgstr "Brendning ochilgan kuni"
+
+#: products/models.py:59
+msgid "Title of Category"
+msgstr "Kategoriyaning nomi"
+
+#: products/models.py:67
+msgid ""
+"Not required. The description must consist minimum 25 and maximum 250 "
+"characters."
+msgstr ""
+"Majburiy emas. Tavsifda minimum 25ta va maksimum 250ta simbol bo'lishi kerak"
+
+#: products/models.py:73
+msgid "Categories"
+msgstr "Kategoriyalar"
+
+#: products/models.py:83
+msgid "Title of Subcategory"
+msgstr "Sab Kategoriyaning nomi"
+
+#: products/models.py:91
+msgid "Sub Category"
+msgstr "Sab Kategoriya"
+
+#: products/models.py:92
+msgid "Sub Categories"
+msgstr "Sab Kategoriyalar"
+
+#: products/models.py:101
+msgid "Title of Product"
+msgstr "Mahsulotning nomi"
+
+#: products/models.py:106
+msgid "Description of product"
+msgstr "Mahsulotning tavsifi"
+
+#: products/models.py:120
+msgid "Count of products"
+msgstr "Mahsulotning sanog'i"
+
+#: templates/admin/auth/user/add_form.html:6
+msgid ""
+"First, enter a phone number and password. Then, you'll be able to edit more "
+"user options."
+msgstr "Birinchi bo'lib telefon raqamingiz va parolingizni kiriting. Keyin siz akkauntnin boshqa tavsiflarini o'zgartira olasiz"
+
+#: templates/admin/auth/user/add_form.html:8
+msgid "Enter a phone number and password."
+msgstr ""
+
+#: templates/admin/base.html:106 templates/admin/base.html:107
+msgid "Search"
+msgstr ""
+
+#: templates/admin/base.html:169
+msgid "Account"
+msgstr ""
+
+#: templates/admin/base.html:172
+msgid "Change password"
+msgstr ""
+
+#: templates/admin/base.html:181
+msgid "Log out"
+msgstr ""
+
+#: templates/admin/base.html:195
+msgid "See Profile"
+msgstr ""
+
+#: templates/admin/base.html:240
+msgid "Dashboard"
+msgstr ""
+
+#: templates/admin/base.html:362
+msgid "Copyright"
+msgstr ""
+
+#: templates/admin/base.html:363
+msgid "All rights reserved."
+msgstr ""
+
+#: templates/admin/base.html:379
+msgid "UI Configuration"
+msgstr ""
+
+#: templates/admin/base.html:383
+msgid "Copy this info your settings file to persist these UI changes"
+msgstr ""
+
+#: templates/admin/base.html:388
+msgid "Close"
+msgstr ""
+
+#: templates/admin/login.html:15
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this"
+" page. Would you like to login to a different account?"
+msgstr ""
+
+#: templates/admin/login.html:64
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: templates/admin/login.html:72
+msgid "Log in"
+msgstr ""
+
+#: templates/admin/parler/language_tabs.html:20
+#: templates/admin/parler/language_tabs.html:25
+msgid "Delete Translation"
+msgstr ""
+
+#: users/admin.py:15
+msgid "Personal info"
+msgstr ""
+
+#: users/admin.py:17
+msgid "Permissions"
+msgstr ""
+
+#: users/admin.py:28
+msgid "Important dates"
+msgstr ""
+
+#: users/apps.py:8
+msgid "Auth and Users"
+msgstr ""
+
+#: users/models.py:79
+msgid "phone number"
+msgstr ""
+
+#: users/models.py:83
+msgid ""
+"Required. The phone number must consist of 9 digits and start without region"
+" code. Example: 944444444"
+msgstr ""
+
+#: users/models.py:85
+msgid "A user with that phone number already exists."
+msgstr ""
+
+#: users/models.py:107
+msgid "Order time"
+msgstr ""
+
+#: users/models.py:122
+msgid "Products Count"
+msgstr ""
+
+#: users/models.py:132
+msgid "Title"
+msgstr ""
+
+#: users/models.py:134
+msgid "Required. The title must consist minimum 2 characters and maximum 70."
+msgstr ""
+
+#: users/models.py:138
+msgid "Message of notification"
+msgstr ""
+
+#: users/models.py:140
+msgid "Required. The text must consist minimum 20 characters and maximum 500"
+msgstr ""
+
+#: users/models.py:145
+msgid "Is read"
+msgstr ""
+
+#: users/models.py:147
+msgid "Received date and time"
+msgstr ""

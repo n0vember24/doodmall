@@ -1,6 +1,9 @@
+from random import randint
+
 from django.core.validators import MinLengthValidator, FileExtensionValidator, MinValueValidator, MaxValueValidator
 from django.db.models import Model, CharField, TextField, ImageField, SlugField, ForeignKey, SET_NULL, DateField, \
     CASCADE, BooleanField, DateTimeField, PositiveSmallIntegerField, JSONField
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from parler.models import TranslatableModel, TranslatedFields
 
@@ -119,17 +122,33 @@ class Product(TranslatableModel):
     )
 
     def save(self, *args, **kwargs):
-        if self.count == 0:
-            self.is_exists = False
+        self.slug = '%s-%s' % (slugify(self.title), randint(1000, 9999))
+        self.is_exists = False if self.count == 0 else True
         return super().save(*args, **kwargs)
+
+    class Meta:
+        db_table = 'products'
+        ordering = ('-updated_at',)
 
     def __str__(self):
         return self.title
 
 
+# class ProductVariant(TranslatableModel):
+#     translations = TranslatedFields(
+#         data=CharField()
+#     )
+#
+
 class ProductImage(Model):
     product = ForeignKey('products.Product', SET_NULL, null=True)
     image = ImageField(upload_to='products/images/')
+    is_cover = BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if self.product.productimage_set.count() == 0:
+            self.is_cover = True
+        return super().save(*args, **kwargs)
 
 
 class Review(Model):
